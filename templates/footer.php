@@ -1,7 +1,7 @@
  <footer>
   <div class="row">
     <div class="four columns">
-      <p>NuTRUtion, brought to you by the Software Engineering Lab</p>
+      <p>NuTRUtion, brought to you by the COMP 523: Software Engineering Lab</p>
     </div>
     <div class="eight columns">
       <ul class="inline-list right">

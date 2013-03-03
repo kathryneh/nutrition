@@ -1,6 +1,43 @@
-#footer {
+body {
+background: white;
+font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+font-weight: normal;
+font-style: normal;
+font-size: 14px;
+line-height: 1;
+color: #222222;
+position: relative;
+-webkit-font-smoothing: antialiased;
+}
+
+header {
+	background-color: #2ba6cb;
+	padding: 22px 0;
+	font-family: "OpenSans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	color: #fff;
+}
+
+footer {
 	background: #3f3f3f;
 	color: #fff;
 	padding: 11px 0;
+	margin-top: 20px;
+}
+footer p{
+	font-size: 20px;
+	line-height: 1.6em;
+}
+
+.label{
+	width: 400px;
+	height: auto;
 	margin-top: 30px;
+}
+
+.data{
+	margin-top: 30px;
+}
+
+td{
+	border-right: 1px solid lightgray;
 }

@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" href="css/foundation.css" />
   <link rel="stylesheet" href="css/nutrution.css" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
 
   <script src="js/vendor/custom.modernizr.js"></script>
 </head>
@@ -60,4 +62,3 @@
 	</div>
 </header>
 <body>
-	<section id="mainContent">
