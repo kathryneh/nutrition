@@ -41,3 +41,11 @@ footer p{
 td{
 	border-right: 1px solid lightgray;
 }
+
+td:last-child{
+	text-align: center;
+}
+
+.confirmed{
+	color:green;
+}

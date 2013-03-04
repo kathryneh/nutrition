@@ -1,30 +1,29 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html class="no-js" lang="en"> 
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <title>NuTRUtion</title>
-  <link rel="stylesheet" href="css/normalize.css" />
-  <link rel="stylesheet" href="css/foundation.css" />
-  <link rel="stylesheet" href="css/nutrution.css" />
+  <link rel="stylesheet" href="stylesheets/normalize.css" />
+  <link rel="stylesheet" href="stylesheets/foundation.css" />
+  <link rel="stylesheet" href="stylesheets/nutrution.css" />
+  <link rel="stylesheet" href="stylesheets/general_enclosed_foundicons.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 
   <script src="js/vendor/custom.modernizr.js"></script>
+  <script src="js/vendor/jquery.js"></script>
+  <script src="js/nutrution.js"></script>
 </head>
 <nav class="top-bar">
   <ul class="title-area">
-    <!-- Title Area -->
     <li class="name">
       <h1><a href="#">NuTRUtion</a></h1>
     </li>
-    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-  </ul>
+</ul>
 
   <section class="top-bar-section">
-    <!-- Left Nav Section -->
     <ul class="left">
       <li><a href="#"><span>About</span></a></li>
       <li class="divider"></li>
@@ -34,7 +33,6 @@
       <li class="divider"></li>
     </ul>
 
-    <!-- Right Nav Section -->
     <ul class="right">
       <li class="divider hide-for-small"></li>
       <li class="has-dropdown"><a href="#">Account Settings</a></li>

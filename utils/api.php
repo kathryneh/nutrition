@@ -3,15 +3,33 @@
 //if it doesn't currently exist (i.e. enter it in w/ all values null)
 //should they be null or should they be empty string? 
 //use === to check for null
-
+function add_to_current_label($db, $upc, $column_name, $column_value){
+	$insert_qry = "insert into current_label ($column_name) values ($column_value) where upc = $upc;";
+	$insert_id = $db->query($insert_qry);
+}
 
 //submit a value to the database given a column name and value and upc
 //aggregate this into one SQL statement? 
 //making a different submission insertion for each. 
-
+function submit_correction($db, $userid, $upc, $column_name, $column_value){
+	$insert_qry = "insert into submission (userid, upc, column_name, column_value) values($userid, $upc, $column_name, $column_value);";
+	$insert_id = $db->query($insert_qry);
+	$count = count_matching_submissions($db, $upc, $column_name, $column_value);
+	//TODO: make an admin screen so that this can be editable by the users. 
+	if($count > 10){
+		add_to_current_label($db, $upc, $column_name, $column_value);
+	}
+	else{
+		//not yet a correct label;
+	}
+}
 
 //check how many submissions are in the database of a value, column name, and upc
-
+function count_matching_submissions($db, $upc, $column_name, $column_value){
+	$count_qry = 'select count(*) from submission where upc=$upc, column_name=$column_name, column_value=$column_value;';
+	$count = $db->query($count_qry);
+	return $count;
+}
 
 //get a label that the user has not yet submitted to
 
@@ -30,7 +48,6 @@ function get_current_label($db, $upc){
 		else{
 			$current_label_query = "select * from current_label where upc=$upc";
 			$current_label = $db->query($current_label_query);
-			echo "error creating new row in database";
 		}
 	}
 	$current_contents = array();
@@ -59,23 +76,5 @@ function get_new_label($db, $upc){
 	return $new_contents;
 }
 
-function construct_display_label_content($db, $upc){
-	$new = (get_new_label($db, $upc));
-	print_r($new);
-	echo "###";
-	$current = (get_current_label($db, $upc));
-	print_r($current);
-
-	foreach ($new as $key => $value) {
-		if($current[$key]){
-			echo "current";
-			echo $current[$key];
-			echo "<br>";
-		}
-		else{
-			echo $new[$key];
-		}
-	}
-}
 
 ?>

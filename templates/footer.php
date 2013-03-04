@@ -17,8 +17,9 @@
   
   <script src="js/foundation.min.js"></script>
   <script src="js/foundation/foundation.topbar.js"></script>
-  <script src="http://www.zurb.com/assets/zurb.mega-drop.js"></script>
+  
   <!--
+  <script src="http://www.zurb.com/assets/zurb.mega-drop.js"></script>
   
   <script src="js/foundation/foundation.js"></script>
   
@@ -45,7 +46,7 @@
   <script src="js/foundation/foundation.section.js"></script>
   
   <script src="js/foundation/foundation.tooltips.js"></script>
-  
+  -->
   
   
   </section>

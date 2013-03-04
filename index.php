@@ -17,7 +17,6 @@
 	echo "</section>";
 	echo "<section>";
 	echo construct_display_label_content($db, $upc);
-	echo "************";
 	echo "</section>";
 	include("templates/footer.php");	
 ?>
