@@ -4,7 +4,8 @@
 //should they be null or should they be empty string? 
 //use === to check for null
 function add_to_current_label($db, $upc, $column_name, $column_value){
-	$insert_qry = "insert into current_label ($column_name) values ($column_value) where upc = $upc;";
+	$insert_qry = "update current_label set $column_name = $column_value where upc = $upc";
+	echo $insert_qry;
 	$insert_id = $db->query($insert_qry);
 }
 
@@ -12,7 +13,7 @@ function add_to_current_label($db, $upc, $column_name, $column_value){
 //aggregate this into one SQL statement? 
 //making a different submission insertion for each. 
 function submit_correction($db, $userid, $upc, $column_name, $column_value){
-	$insert_qry = "insert into submission (userid, upc, column_name, column_value) values($userid, $upc, $column_name, $column_value);";
+	$insert_qry = "insert into submission (userid, upc, column_name, column_value) values($userid, '$upc', '$column_name', $column_value);";
 	$insert_id = $db->query($insert_qry);
 	$count = count_matching_submissions($db, $upc, $column_name, $column_value);
 	//TODO: make an admin screen so that this can be editable by the users. 
@@ -26,8 +27,13 @@ function submit_correction($db, $userid, $upc, $column_name, $column_value){
 
 //check how many submissions are in the database of a value, column name, and upc
 function count_matching_submissions($db, $upc, $column_name, $column_value){
-	$count_qry = 'select count(*) from submission where upc=$upc, column_name=$column_name, column_value=$column_value;';
-	$count = $db->query($count_qry);
+	//TODO something's wrong here. 
+	$count_qry = "select * from submission where upc=$upc and column_name='$column_name' and column_value=$column_value;";
+	//$count = $db->query($count_qry);
+	// print_r($countObj);
+	// $count = $countObj->fetch_row();
+	echo $count_qry;
+	$count = mysql_num_rows($count_qry, $db);
 	return $count;
 }
 

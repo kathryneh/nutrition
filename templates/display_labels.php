@@ -59,7 +59,10 @@ function display_label($db, $upc){
 	echo "<table class='data'>";
 	echo "<thead><tr><td>Value</td><td>Amount</td><td>Correct?</td></tr></thead>";
     foreach ($new as $key => $value) {
-        if($current[$key] != NULL){ //do we need this check or do we still want to check for these things from users?
+        if($key == 'upc'){//special case for UPC
+        	echo "<tr><td>UPC</td><td>$value</td><input type='hidden' name='upc' value='$value'><td><i class='foundicon-checkmark''></i></td></tr>";
+        }
+        else if($current[$key] != NULL){ //do we need this check or do we still want to check for these things from users?
         	echo "<tr class='confirmed'><td>";
             echo $columnArray[$key];
             echo "</td>";
