@@ -17,6 +17,14 @@ header {
 	color: #fff;
 }
 
+h1{
+	margin-bottom: -0.2em;
+}
+
+.subtitle{
+	color: black;
+}
+
 footer {
 	background: #3f3f3f;
 	color: #fff;

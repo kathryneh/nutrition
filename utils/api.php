@@ -28,17 +28,16 @@ function submit_correction($db, $userid, $upc, $column_name, $column_value){
 //check how many submissions are in the database of a value, column name, and upc
 function count_matching_submissions($db, $upc, $column_name, $column_value){
 	//TODO something's wrong here. 
-	$count_qry = "select * from submission where upc=$upc and column_name='$column_name' and column_value=$column_value;";
-	//$count = $db->query($count_qry);
-	// print_r($countObj);
-	// $count = $countObj->fetch_row();
-	echo $count_qry;
-	$count = mysql_num_rows($count_qry, $db);
-	return $count;
+	//count isn't returning anything. 
+	// $db = getdb();
+	// $count_qry = "select count(*) as count from submission where upc=$upc and column_name='$column_name' and column_value=$column_value;";
+	// $countObj = $db->query($count_qry);
+	// $count=mysql_fetch_assoc($count_qry);
+	// return $count['count'];
 }
 
-//get a label that the user has not yet submitted to
-
+//TODO: get a label that the user has not yet submitted to
+//SELECT col1 FROM tbl WHERE [[not in complete_label or userid in submission table...]] RAND()<=0.0006 [percentage of total] limit 1;
 
 //get values in new_label that are not in current_label
 function get_current_label($db, $upc){

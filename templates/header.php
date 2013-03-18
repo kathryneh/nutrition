@@ -35,7 +35,7 @@
 
     <ul class="right">
       <li class="divider hide-for-small"></li>
-      <li class="has-dropdown"><a href="#">Account Settings</a></li>
+      <li><a href="#">Settings</a></li>
       <li class="divider"></li>
       <li class="has-form">
         <form>
@@ -54,8 +54,8 @@
 <header>
 	<div class="row">
 		<div class="twelve columns">
-			<h1>NuTRUtion</h1>
-			<h4>Helping understand America's dietary trends.</h4>
+			<h1>NuTRUtion Nation</h1>
+			<p class="subtitle">Helping understand America's dietary trends and the TRUE nutrition information about our food.</p>
 		</div>
 	</div>
 </header>
