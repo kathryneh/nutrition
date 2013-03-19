@@ -30,6 +30,7 @@ footer {
 	color: #fff;
 	padding: 11px 0;
 	margin-top: 20px;
+	clear: both;
 }
 footer p{
 	font-size: 20px;
@@ -37,16 +38,17 @@ footer p{
 }
 
 .label{
-	width: 400px;
+	width: 350px;
 	height: auto;
 	margin-top: 30px;
-	position:fixed;
+	position: fixed;
+}
+
+.hidden{
+	display: none;
 }
 
 /*comment */
-.data{
-	margin-top: 30px;
-}
 
 td{
 	border-right: 1px solid lightgray;
@@ -58,4 +60,43 @@ td:last-child{
 
 .confirmed{
 	color:green;
+}
+
+.upc{
+	margin-bottom: -0.1em;
+	float:right;
+}
+
+.offset-label{
+	padding-left: 50px;
+}
+.button .offset-label{
+	padding-left: 0;
+}
+
+.button.add{
+	padding: 0.125em;
+	margin: 0.125em;
+	font-size: 1em;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
 }

@@ -29,7 +29,7 @@
       <li class="divider"></li>
       <li><a href="#">Contact</a></li>
       <li class="divider"></li>
-      <li><a href="#">Top Scores</a></li>
+      <li><a href="todo.php">Todo</a></li>
       <li class="divider"></li>
     </ul>
 
@@ -40,13 +40,13 @@
       <li class="has-form">
         <form>
           <div class="row collapse">
-              <a href="#" class="alert button">Log Out</a>
+              <a href="login.php" class="alert button">Log In</a>
           </div>
         </form>
       </li>
       <li class="divider show-for-small"></li>
       <li class="has-form">
-        <a class="button" href="#">Sign Up</a>
+        <a class="button" href="signup.php">Sign Up</a>
       </li>
     </ul>
   </section>

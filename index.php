@@ -7,7 +7,7 @@
 	$db=getdb();
 	
 	
-	session_start();
+	//session_start();
 	//$auth = new authenticate();
 	
 	//TODO the authenticate class seems to be buggy
@@ -25,16 +25,17 @@
 	    	$upc = '003000005586';
 			echo "<section id='container'>";
 		    echo "<div class='row'>";
-			echo "<div class='large-6 columns'>";
+			echo "<div class='large-5 columns'>";
 			display_img('003000005586');
 			echo "</div>";
-			echo "<div class='large-6 columns'>";
+			echo "<div class='large-7 columns'>";
 			display_label($db, $upc);
 			echo "</div>";
 		    echo "</div>";
 	        echo "</section>";
-	    }
-    }
+	        echo "<div class='clearfix'></div>";
+	   //  }
+    // }
 	
 		//TODO: add guest option 
 
