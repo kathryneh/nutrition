@@ -80,7 +80,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 62.5em;
+  max-width: 75em;
   *zoom: 1; }
   .row:before, .row:after {
     content: " ";
@@ -3229,7 +3229,7 @@ table {
       text-align: left; }
   table tr th,
   table tr td {
-    padding: 0.5625em 0.625em;
+    padding: 0.125em 0.125em;
     font-size: 0.875em;
     color: #222222; }
   table tr.even, table tr.alt, table tr:nth-of-type(even) {

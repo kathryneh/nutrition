@@ -11,46 +11,46 @@ function display_img($upc){
 function display_label($db, $upc){
 	$columnArray = array(
 	'upc' => 'UPC',
-	'servsize' => 'Serving Size',
-	'servunit' => 'Serving Unit',
-	'volquantity' => 'Volume or Quantity',
-	'volunit' => 'Volume Unit',
-	'servcontainer' => 'Servings Per Container',
-	'calories' => '<b>Calories</b>',
+	'servsize' => '<span class="secondary">Serving Size</span>',
+	'servunit' => '<span class="secondary">Serving Unit</span>',
+	'volquantity' => '<span class="secondary">Volume or Quantity</span>',
+	'volunit' => '<span class="secondary">Volume Unit</span>',
+	'servcontainer' => '<span class="secondary">Servings Per Container</span>',
+	'calories' => '<span class="primary">Calories</span>',
 	'caloriesfat' => '<span class="offset-label">Calories from Fat</span>',
-	'totalfatg' => '<b>Total Fat(g)</b>',
-	'totalfatdv' => '<b>Total Fat (Daily Value)</b>',
+	'totalfatg' => '<span class="primary">Total Fat(g)</span>',
+	'totalfatdv' => '<span class="primary">Total Fat (Daily Value)</span>',
 	'saturatedfatg' => '<span class="offset-label">Saturated Fat(g)</span>',
-	'saturatedfatdv' => '<span class="offset-label"><b>Saturated Fat (Daily Value)</b></span>',
+	'saturatedfatdv' => '<span class="primary offset-label">Saturated Fat (Daily Value)</span>',
 	'transfatg' => '<span class="offset-label">Trans Fat(g)</span>',
 	'polyunsatfat' => '<span class="offset-label">Polyunsaturated Fat(g)</span>',
 	'monounsatfat' => '<span class="offset-label">Monounsaturated Fat(g)</span>',
-	'cholesterolmg' => '<b>Cholesterol(mg)</b>',
-	'cholesteroldv' => '<b>Cholesterol (Daily Value)</b>',
-	'sodiummg' => '<b>Sodium(mg)</b>',
-	'sodiumdv' => '<b>Sodium (Daily Value)</b>',
-	'potassiummg' => '<b>Potassium(mg)</b>',
-	'potassiumdv' => '<b>Potassium (Daily Value)</b>',
-	'totalcarbg' => '<b>Total Carb(g)</b>',
-	'totalcarbdv' => '<b>Total Carb(dv)</b>',
+	'cholesterolmg' => '<span class="primary">Cholesterol(mg)</span>',
+	'cholesteroldv' => '<span class="primary">Cholesterol (Daily Value)</span>',
+	'sodiummg' => '<span class="primary">Sodium(mg)</span>',
+	'sodiumdv' => '<span class="primary">Sodium (Daily Value)</span>',
+	'potassiummg' => '<span class="primary">Potassium(mg)</span>',
+	'potassiumdv' => '<span class="primary">Potassium (Daily Value)</span>',
+	'totalcarbg' => '<span class="primary">Total Carb(g)</span>',
+	'totalcarbdv' => '<span class="primary">Total Carb(dv)</span>',
 	'dietaryfiberg' => '<span class="offset-label">Dietary Fiber(g)</span>',
-	'dietaryfiberdv' => '<span class="offset-label"><b>Dietary Fiber (Daily Value)</b></span>',
+	'dietaryfiberdv' => '<span class="offset-label primary">Dietary Fiber (Daily Value)</span>',
 	'sugarsg' => '<span class="offset-label">Sugar(g)</span>',
 	'sugarsalcoholg' => '<span class="offset-label">Sugar Alcohol(dv)</span>',
 	'othercarbg' => '<span class="offset-label">Other Carb(g)</span>',
-	'proteing' => '<b>Protein(g)</b>',
-	'calciumdv' => 'Calcium (Daily Value)',
-	'irondv' => 'Iron (Daily Value)',
-	'vitaminadv' => 'Vitamin A (Daily Value)',
-	'vitamincdv' => 'Vitamin C (Daily Value)',
-	'vitaminddv' => 'Vitamin D (Daily Value)',
-	'vitaminedv' => 'Vitamin E (Daily Value)',
-	'vitaminb6dv' => 'Vitamin B6 (Daily Value)',
-	'vitaminb12dv' => 'Vitamin B12 (Daily Value)',
-	'thiamindv' => 'Thiamin (Daily Value)',
-	'riboflavindv' => 'Riboflavin (Daily Value)',
-	'otherinfo' => 'Other Information',
-	'extrainfo' => 'Extra Information'
+	'proteing' => '<span class="primary">Protein(g)</span>',
+	'calciumdv' => '<span class="secondary">Calcium (Daily Value)</span>',
+	'irondv' => '<span class="secondary">Iron (Daily Value)</span>',
+	'vitaminadv' => '<span class="secondary">Vitamin A (Daily Value)</span>',
+	'vitamincdv' => '<span class="secondary">Vitamin C (Daily Value)</span>',
+	'vitaminddv' => '<span class="secondary">Vitamin D (Daily Value)</span>',
+	'vitaminedv' => '<span class="secondary">Vitamin E (Daily Value)</span>',
+	'vitaminb6dv' => '<span class="secondary">Vitamin B6 (Daily Value)</span>',
+	'vitaminb12dv' => '<span class="secondary">Vitamin B12 (Daily Value)</span>',
+	'thiamindv' => '<span class="secondary">Thiamin (Daily Value)</span>',
+	'riboflavindv' => '<span class="secondary">Riboflavin (Daily Value)</span>',
+	'otherinfo' => '<span class="secondary">Other Information</span>',
+	'extrainfo' => '<span class="secondary">Extra Information</span>'
 	);
 
 	$new = (get_new_label($db, $upc));
@@ -59,7 +59,7 @@ function display_label($db, $upc){
 	foreach ($new as $key => $value) {
         if($key == 'upc'){//special case for UPC
         	echo "<form id='nutritionLabel' onsubmit='return submitNutritionLabel();'>";
-        	echo "<h3 class='subheader upc'>UPC: $value</h3><input type='hidden' name='upc' value='$value'>";
+        	echo "<h3 style='float:left; margin-bottom:0'>Nutrition Facts</h3><h3 class='subheader upc'>UPC: $value</h3><input type='hidden' name='upc' value='$value'>";
         	echo "<table class='data'>";
 			echo "<thead><tr><td>Value</td><td>Amount</td><td>Correct?</td><td>Remove?</td></tr></thead>";
         }
@@ -86,11 +86,17 @@ function display_label($db, $upc){
         	echo "<td><input type='checkbox' name=$key></td><td><i class='foundicon-remove' data='$key'></i></td></tr>";
         }
     }
-    echo "<tr><td colspan=4><h4>Values not present or with zero values</h4><h4 class='subheader'>(click to add a value)</h4></td></tr>";
-    echo "<tr> <td colspan=4 class='hiddenRows'> $hiddenBox </td></tr>";
+    // echo "<tr><td colspan=4><h4>Values not present or with zero values</h4><h4 class='subheader'>(click to add a value)</h4></td></tr>";
+    // echo "<tr> <td colspan=4 class='hiddenRows'> $hiddenBox </td></tr>";
     echo "<tr><td colspan=4><input type='submit' class='button success'></td></tr>";
+    // echo "</table>";
+    // echo "</form>";
     echo "</table>";
     echo "</form>";
+    echo "</div>";
+    echo "<div class='large-2 columns'>";
+    echo "<h6>Values not present or with zero values</h6><h6 class='subheader'>(click to add a value)</h6>";
+    echo "<div class='hiddenRows'> $hiddenBox </div>";
 }
 
 

@@ -41,7 +41,6 @@ footer p{
 	width: 350px;
 	height: auto;
 	margin-top: 30px;
-	position: fixed;
 }
 
 .hidden{
@@ -54,9 +53,11 @@ td{
 	border-right: 1px solid lightgray;
 }
 
-td:last-child{
+td:last-child,
+td:nth-child(3){
 	text-align: center;
 }
+
 
 .confirmed{
 	color:green;
@@ -99,4 +100,17 @@ html[xmlns] .clearfix {
  
 * html .clearfix {
 	height: 1%;
+}
+
+.primary{
+	font-weight: bold;
+}
+
+.hiddenRows .button{
+	font-weight: normal;
+	font-size: 0.75em;
+}
+.hiddenRows .button span{
+	font-weight: normal !important;
+	font-size: 0.75em;
 }

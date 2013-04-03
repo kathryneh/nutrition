@@ -25,13 +25,13 @@
 	    	$upc = '003000005586';
 			echo "<section id='container'>";
 		    echo "<div class='row'>";
-			echo "<div class='large-5 columns'>";
+			echo "<div class='large-4 columns'>";
 			display_img('003000005586');
 			echo "</div>";
-			echo "<div class='large-7 columns'>";
+			echo "<div class='large-6 columns'>";
 			display_label($db, $upc);
-			echo "</div>";
-		    echo "</div>";
+			echo "</div>";//close display
+		    echo "</div>";//close row
 	        echo "</section>";
 	        echo "<div class='clearfix'></div>";
 	   //  }
