@@ -40,13 +40,29 @@
       <li class="has-form">
         <form>
           <div class="row collapse">
-              <a href="login.php" class="alert button">Log In</a>
+              <a href="ajax/login.php" class="alert button">
+                <?php
+                  session_start();
+                  if(isset($_SESSION['user_id'])) {
+                      echo "Log Out";
+                  }
+                  else {
+                      echo "Log In";
+                  }
+                ?></a>
           </div>
         </form>
       </li>
       <li class="divider show-for-small"></li>
       <li class="has-form">
-        <a class="button" href="signup.php">Sign Up</a>
+        <a class="button" href="signup.php">
+          <?php 
+            if(isset($_SESSION['user_id'])) {
+                echo $_SESSION['user_id'];
+            }
+            else echo "Sign Up";
+          ?>
+            </a>
       </li>
     </ul>
   </section>

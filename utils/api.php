@@ -1,10 +1,27 @@
 <?php
+
+//selects a random label from the database
+//where the user has not yet submitted a correction for the values
+//of this label. 
+function get_random_label($db, $userid){
+
+	//this query gets the non-complete labels
+	 
+	$select_qry = "select upc from new_label where new_label.upc NOT IN (select upc from complete_label)";
+	//this query gets the labels the user hasn't submitted to before
+	$select_qry2=  "select upc from new_label where new_label.upc NOT IN (select upc from submission where submission.userid = userid)";
+	//left join method
+}
+
+
 //copy a label from new_label to current_label
 //if it doesn't currently exist (i.e. enter it in w/ all values null)
 //should they be null or should they be empty string? 
 //use === to check for null
 function add_to_current_label($db, $upc, $column_name, $column_value){
-	$insert_qry = "update current_label set $column_name = $column_value where upc = $upc";
+	$create_qry = "insert into current_label(upc) values($upc)"; 
+	$insert_upc = $db->query($insert_qry);
+	$insert_qry = "update current_label set $column_name = $column_value where upc = $insert_upc";
 	echo $insert_qry;
 	$insert_id = $db->query($insert_qry);
 }
@@ -13,8 +30,9 @@ function add_to_current_label($db, $upc, $column_name, $column_value){
 //aggregate this into one SQL statement? 
 //making a different submission insertion for each. 
 function submit_correction($db, $userid, $upc, $column_name, $column_value){
-	$insert_qry = "insert into submission (userid, upc, column_name, column_value) values($userid, '$upc', '$column_name', $column_value);";
-	$insert_id = $db->query($insert_qry);
+	//do we need to check about whether the submission is in the table yet? 
+	//$insert_qry = "insert into submission (userid, upc, column_name, column_value) values($userid, '$upc', '$column_name', $column_value);";
+	//$insert_id = $db->query($insert_qry);
 	$count = count_matching_submissions($db, $upc, $column_name, $column_value);
 	//TODO: make an admin screen so that this can be editable by the users. 
 	if($count > 10){
@@ -32,7 +50,9 @@ function count_matching_submissions($db, $upc, $column_name, $column_value){
 	// $db = getdb();
 	// $count_qry = "select count(*) as count from submission where upc=$upc and column_name='$column_name' and column_value=$column_value;";
 	// $countObj = $db->query($count_qry);
-	// $count=mysql_fetch_assoc($count_qry);
+
+	// Should this be fetch..($countObj)?
+	// $count=$mysql_fetch_assoc($count_qry);
 	// return $count['count'];
 }
 
