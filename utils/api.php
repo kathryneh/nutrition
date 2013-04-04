@@ -4,13 +4,10 @@
 //where the user has not yet submitted a correction for the values
 //of this label. 
 function get_random_label($db, $userid){
-
-	//this query gets the non-complete labels
-	 
-	$select_qry = "select upc from new_label where new_label.upc NOT IN (select upc from complete_label)";
-	//this query gets the labels the user hasn't submitted to before
-	$select_qry2=  "select upc from new_label where new_label.upc NOT IN (select upc from submission where submission.userid = userid)";
-	//left join method
+	$select_qry= "select upc from new_label where new_label.upc NOT IN (select submission.upc from submission where userid = $userid and submission.upc NOT IN ( select upc from complete_label)) order by rand() limit 1";
+	$result = $db->query($select_qry);
+	$label = $result->fetch_assoc();
+	return $label['upc'];
 }
 
 

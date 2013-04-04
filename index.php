@@ -32,11 +32,13 @@
     }
 	else {
 		 //header('Location: login.php');
-			$upc = '003000005586';
+		 //
+		 	//TODO replace with userid once we have it,
+			$upc = get_random_label($db, '1'); //$upc = get_random_label($db, $user_id);
 			echo "<section id='container'>";
 		    echo "<div class='row'>";
 			echo "<div class='large-4 columns'>";
-			display_img('003000005586');
+			display_img($upc);
 			echo "</div>";
 			echo "<div class='large-6 columns'>";
 			display_label($db, $upc);

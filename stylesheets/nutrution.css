@@ -75,10 +75,12 @@ td:nth-child(3){
 	padding-left: 0;
 }
 
-.button.add{
+.button.add, 
+.button.add .secondary, 
+.buuton.add .offset-label{
 	padding: 0.125em;
 	margin: 0.125em;
-	font-size: 1em;
+	font-size: 0.80em;
 }
 
 .clearfix:after {
@@ -108,7 +110,6 @@ html[xmlns] .clearfix {
 
 .hiddenRows .button{
 	font-weight: normal;
-	font-size: 0.75em;
 }
 .hiddenRows .button span{
 	font-weight: normal !important;
