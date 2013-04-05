@@ -12,13 +12,13 @@
 				<li>Get images into DB <a href="http://forums.mysql.com/read.php?20,17671,27914">read</a></li>
 				<li>Someone needs to champion getting PHPUnit installed (or another test framework for PHP)</li>
 				<li>Testing</li>
-				<li>Make it pretty(ier)</li>
+				<li class="completed-task">Make it pretty(ier)</li>
 				<li>Points?</li>
 				<li>About page</li>
 				<li>Contact page</li>
 				<li>Analytics & Viewing?</li>
 				<li>Top scores?</li>
-				<li>Showing a random nutrition label </li>
+				<li class="completed-task">Showing a random nutrition label </li>
 			</ul>
 		</div>
 		<div class="large-2 columns"></div>

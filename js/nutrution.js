@@ -64,11 +64,13 @@ $(document).ready(function(){
 	$(".hiddenRows").on('click', function(event){
 		if($(event.target).hasClass("add")){
 			colName = event.target.getAttribute("column");
-			unhideRow(event, colName);
-			$("tr[data='"+colName+"']").toggleClass("hidden");
+			console.log("hi");
+			console.log($("tr[data='"+colName+"']"));
+			$("i[data='"+colName+"']").parent().parent().toggleClass("hidden");
 			$(event.target).toggleClass("hidden");
 		}
 		else if( $(event.target).hasClass("foundicon-plus")){
+			console.log("there");
 			colName = event.target.parentNode.getAttribute("column");
 			$("i[data='"+colName+"']").parent().toggleClass("hidden");
 			$("tr[data-column='"+colName+"']").toggleClass("hidden");
@@ -76,6 +78,7 @@ $(document).ready(function(){
 			$(event.target).parent().addClass("hidden");
 		}
 		else if(event.target.parentNode.classList.contains("add")){
+			console.log("what?");
 			colName = event.target.parentNode.getAttribute("column");
 			$("i[data='"+colName+"']").parent().parent().toggleClass("hidden");
 			$("tr[data='"+colName+"']").toggleClass("hidden");

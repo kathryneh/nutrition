@@ -115,3 +115,7 @@ html[xmlns] .clearfix {
 	font-weight: normal !important;
 	font-size: 0.75em;
 }
+
+.completed-task{
+	text-decoration: line-through;
+}
