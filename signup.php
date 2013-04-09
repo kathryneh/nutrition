@@ -19,7 +19,7 @@
         <label for="password">Password</label>
         <input type="password" name = "password" id="password">
         <label for="confirm_password">Confirm Password</label>
-        <input type="text" name = "confirm_password" id="confirm_password">
+        <input type="password" name = "confirm_password" id="confirm_password">
         <input type="submit" id="login" value="Sign Up" class="button">
         <span><?php echo $_SESSION['create_error']; unset($_SESSION['create_error']); ?></span>
       </form>

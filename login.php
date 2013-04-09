@@ -19,7 +19,7 @@
         <input type="submit" id="login" value="Login" class="button">
         <span><?php echo $_SESSION['login_error']; unset($_SESSION['login_error']); ?></span>
       </form>
-      <form method = "GET" action = "ajax/login.php?username=test&password=one" id = "guestLogin">
+      <form method = "GET" action = "ajax/login.php" id = "guestLogin">
         <input type="submit" id="guestSubmit" value="Login as guest" class="button">
       </form>
     </div>

@@ -6,7 +6,7 @@
 	// remove  errors, if any, from last login attempt
 	session_start();
 
-/* GUEST LOGIN OPTION
+/* GUEST LOGIN OPTION 
 	if($_SERVER['REQUEST_METHOD']=='GET') {
 		$auth->login("test", "one");
 		header('Location: ../index.php');

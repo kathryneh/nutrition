@@ -1,5 +1,4 @@
 var submitNutritionLabel = function(){
-	console.log("hello!");
 	$.ajax({
 		type:'POST',
 		url: 'ajax/submitNutritionLabel.php',
@@ -8,24 +7,48 @@ var submitNutritionLabel = function(){
 			console.log(response);
 		}
 	});
-	return false;
+	return true;
 };
 
-//TODO fix this "fixed position" bug....
+var changeVerification = function(){
+	console.log($('#numVerifications').serialize());
+	$.ajax({
+		type:'POST',
+		url: 'utils/verification.php',
+		data: $('#numVerifications').serialize(),
+		success: function(response) {
+			console.log(response);
+		}
+	});
+	return true;
+};
+
 var windowScroll = function(labelLocation){
 	$(window).scroll(function (event) {
 		var windowTop = $(this).scrollTop();
-		console.log(windowTop);
-		console.log(window.top.pageYOffset);
-		var lLocation= $('.label').offset().top; //original location
-		console.log(lLocation);
 		if (windowTop - labelLocation > 0 && windowTop + window.top.pageYOffset < document.height) {
-			console.log(lLocation);
 			$('.label').offset({
 				top: windowTop,
 				left: $('.label').offset().left
 			});
 		}
+	});
+};
+
+var disableCheckbox = function(){
+	$('input').on('keypress', function(event){
+		var inputName = ($(event.target)[0].name);
+		$('input[name="'+inputName+'"]')[1].disabled = true;
+	});
+};
+
+var disableInput = function(){
+	$('input[type=checkbox]').on('click', function(event){
+		var inputName = ($(event.target)[0].name);
+		var inputTarget = $('input[name="'+inputName+'"]')[1];
+		var inputSibling = $('input[name="'+inputName+'"]')[0];
+		if ($(inputSibling).attr('disabled')) $(inputSibling).removeAttr('disabled');
+            else $(inputSibling).attr('disabled', 'disabled');
 	});
 };
 
@@ -42,7 +65,6 @@ var hideRow = function(event){
 	else{
 		console.log("second");
 		colText = lickedIcon.parentNode.parentNode.children[0].innerHTML;
-		console.log(colText);
 	}
 	var outerDiv = document.createElement("div");
 	$(outerDiv).addClass("button");
@@ -57,28 +79,29 @@ var hideRow = function(event){
 
 
 $(document).ready(function(){
-	var labelLocation = $('.label').offset().top;
-	windowScroll(labelLocation);
-	windowScroll();
+	if (!window.chrome){
+		$('#notChromeRow').show();
+	}
+	if (!!$('.label')){
+		var labelLocation = $('.label').offset().top;
+		windowScroll(labelLocation);
+		windowScroll();
+	}
 	var colName;
 	$(".hiddenRows").on('click', function(event){
 		if($(event.target).hasClass("add")){
 			colName = event.target.getAttribute("column");
-			console.log("hi");
-			console.log($("tr[data='"+colName+"']"));
 			$("i[data='"+colName+"']").parent().parent().toggleClass("hidden");
 			$(event.target).toggleClass("hidden");
 		}
 		else if( $(event.target).hasClass("foundicon-plus")){
-			console.log("there");
 			colName = event.target.parentNode.getAttribute("column");
-			$("i[data='"+colName+"']").parent().toggleClass("hidden");
+			$("i[data='"+colName+"']").parent().parent().toggleClass("hidden");
 			$("tr[data-column='"+colName+"']").toggleClass("hidden");
 			$('body').scroll($("tr[data-column="+colName+"]").offset().top);
 			$(event.target).parent().addClass("hidden");
 		}
 		else if(event.target.parentNode.classList.contains("add")){
-			console.log("what?");
 			colName = event.target.parentNode.getAttribute("column");
 			$("i[data='"+colName+"']").parent().parent().toggleClass("hidden");
 			$("tr[data='"+colName+"']").toggleClass("hidden");
@@ -93,4 +116,6 @@ $(document).ready(function(){
 			hideRow(event);
 		}
 	});
+	disableCheckbox();
+	disableInput();
 });

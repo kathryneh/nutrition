@@ -4,21 +4,13 @@
 		<div class="large-2 columns"></div>
 		<div class="large-8 columns">	
 			<ul>
-				<h2> TODO </h2>
-				<li>Admin page</li>
-				<li>Login/Authentication</li>
-				<li>Richer user profile (image, etc)</li>
-				<li>Update Submissions (count problem?) </li>
-				<li>Get images into DB <a href="http://forums.mysql.com/read.php?20,17671,27914">read</a></li>
-				<li>Someone needs to champion getting PHPUnit installed (or another test framework for PHP)</li>
-				<li>Testing</li>
-				<li class="completed-task">Make it pretty(ier)</li>
-				<li>Points?</li>
-				<li>About page</li>
-				<li>Contact page</li>
-				<li>Analytics & Viewing?</li>
-				<li>Top scores?</li>
-				<li class="completed-task">Showing a random nutrition label </li>
+				<h2> TODO </h2> 
+<li> Polish on admin page. (yeah, I know it looks like crap) </li>
+<li> User data export - activity of users, what they've submitted to, creation date, etc </li>
+<li> Wire up the settings page with the admin setting in the database.  </li>
+<li> Authentication emails? </li>
+<li> Polish on sign-up/login page. (Why is this not directly signing you in when you create an account? I'm really confused by the login / signup process). </li>
+<li> Testing </li>
 			</ul>
 		</div>
 		<div class="large-2 columns"></div>
@@ -42,7 +34,7 @@
 		</div>
 		<div class="large-2 columns"></div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none;">
 		<div class="large-2 columns"></div>
 		<div class="large-8 columns">	
 			<ul>
@@ -57,7 +49,7 @@
 		</div>
 		<div class="large-2 columns"></div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none;">
 		<div class="large-2 columns"></div>
 		<div class="large-8 columns">	
 			<ul>

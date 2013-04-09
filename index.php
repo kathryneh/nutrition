@@ -16,14 +16,15 @@
 	        header('Location: login.php');
 	    } 
 	    else {
-			$upc = '003000005586';
+	    	$user_id = get_current_user_details($db, $_SESSION['user_id']);
+			$upc = get_random_label($db, $user_id); 
 			echo "<section id='container'>";
 		    echo "<div class='row'>";
 			echo "<div class='large-4 columns'>";
-			display_img('003000005586');
+			display_img($upc);
 			echo "</div>";
 			echo "<div class='large-6 columns'>";
-			display_label($db, $upc);
+			display_label($db, $upc, $user_id);
 			echo "</div>";//close display
 		    echo "</div>";//close row
 	        echo "</section>";
@@ -31,21 +32,7 @@
 	    }
     }
 	else {
-		 //header('Location: login.php');
-		 //
-		 	//TODO replace with userid once we have it,
-			$upc = get_random_label($db, '1'); //$upc = get_random_label($db, $user_id);
-			echo "<section id='container'>";
-		    echo "<div class='row'>";
-			echo "<div class='large-4 columns'>";
-			display_img($upc);
-			echo "</div>";
-			echo "<div class='large-6 columns'>";
-			display_label($db, $upc);
-			echo "</div>";//close display
-		    echo "</div>";//close row
-	        echo "</section>";
-	        echo "<div class='clearfix'></div>";
+		header('Location: login.php');
 	}
 	    
 		//TODO: add guest option 

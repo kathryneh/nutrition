@@ -119,3 +119,9 @@ html[xmlns] .clearfix {
 .completed-task{
 	text-decoration: line-through;
 }
+
+.notChrome{
+	text-align: center;
+	background-color: yellow;
+	color: black;
+}

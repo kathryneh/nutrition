@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="stylesheets/nutrution.css" />
   <link rel="stylesheet" href="stylesheets/general_enclosed_foundicons.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-
   <script src="js/vendor/custom.modernizr.js"></script>
   <script src="js/vendor/jquery.js"></script>
   <script src="js/nutrution.js"></script>
@@ -19,7 +17,7 @@
 <nav class="top-bar">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">NuTRUtion</a></h1>
+      <h1><a href="index.php">NuTRUtion</a></h1>
     </li>
 </ul>
 
@@ -35,7 +33,7 @@
 
     <ul class="right">
       <li class="divider hide-for-small"></li>
-      <li><a href="#">Settings</a></li>
+      <li><a href="settings.php">Settings</a></li>
       <li class="divider"></li>
       <li class="has-form">
         <form>
@@ -68,6 +66,9 @@
   </section>
 </nav>
 <header>
+  <div class="row" id="notChromeRow">
+    <div class="notChrome large-6 large-offset-3 columns panel" style="display:none;">This site is optimized for Google Chrome and may act unexpectedly in other browsers</div>
+  </div>
 	<div class="row">
 		<div class="twelve columns">
 			<h1>NuTRUtion Nation</h1>

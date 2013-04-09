@@ -124,7 +124,9 @@ class authenticate {
 		$delete_query = "DELETE FROM logged_in_user WHERE username = '$username'";
 	    $this->_db->query($delete_query);
 		session_unset();
-		//session_destroy();
+		session_destroy();
+		header('Location: login.php');
 	}
 }
+
 ?>
