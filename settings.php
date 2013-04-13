@@ -8,6 +8,8 @@
   $db=getdb();
   $auth = new authenticate();
 
+  $user = get_all_current_user_details($db, $_SESSION['user_id']);
+
   if ($_FILES[csv][size] > 0) { 
 
     //get the csv file 
@@ -85,39 +87,98 @@
 	} 
   ?>
   <div class="row">
-    <div class="large-6 large-offset-3 columns" style="min-height: 700px">
+    <div class="large-6 large-offset-1" style="min-height: 700px">
       <h3> User Settings </h3>
-      <form method="POST" action = "ajax/createUser.php" id = "userSignup">
-        <label for="username">Username</label>
-        <input type="text" id="username" name = "username" disabled=true>
-        <label for="first">First Name</label>
-        <input type="text" id="first" name = "first">
-        <label for="last">Last Name</label>
-        <input type="text" id="last" name = "last">
-        <label for="email">Email Address</label>
-        <input type="text" id="email" name = "email">
-        <label for="password">Password</label>
-        <input type="password" name = "password" id="password">
-        <label for="confirm_password">Confirm Password</label>
-        <input type="text" name = "confirm_password" id="confirm_password">
-        <input type="submit" id="login" value="Sign Up" class="button">
+      <form method="POST" id = "userSignup">
+        <div class="row">
+            <div class="large-2 columns">
+                <label for="username" class="right">Username</label>
+            </div>
+            <div class="large-5 columns">
+            <input type="text" id="username" name = "username" value=<?php echo $user['username']; ?> disabled=true>
+            </div>
+            <div class="large-5 columns">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="large-2 columns">
+                <label for="first" class="right">First Name</label>
+            </div>
+            <div class="large-4 columns">
+                <input type="text" id="first" name = "first" value=<?php echo $user['first']; ?>>
+            </div>
+            <div class="large-2 columns">
+                <label for="first" class="right">Last Name</label>
+            </div>
+            <div class="large-4 columns">
+                <input type="text" id="last" name = "last" value=<?php echo $user['last']; ?>>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="large-2 columns">
+                <label for="email" class="right">Email Address</label>
+            </div>
+            <div class="large-5 columns"> 
+                <input type="text" id="email" name = "email" value=<?php echo $user['username']; ?>>   
+            </div>
+            <div class="large-5 columns">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="large-2 columns">
+                <label for="password" class="right">Password</label>
+            </div>
+            <div class="large-5 columns"> 
+                <input type="text" id="password" name = "password">   
+            </div>
+            <div class="large-5 columns">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="large-2 columns">
+                <label for="confirm_password" class="right">Confirm Password</label>
+            </div>
+            <div class="large-5 columns"> 
+                <input type="text" id="confirm_password" name = "confirm_password">   
+            </div>
+            <div class="large-5 columns">
+            </div>
+        </div>
+        <br>
+        <input type="submit" id="login" value="Save Profile Changes" class="button large-offset-2">
       </form>
+      <div class="row">
     <h3> Admin Settings </h3>
     <h5> Add a new CSV file of nutrition label information </h5>
       <?php if (!empty($_GET[success])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?> 
     
 	<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1"> 
-	  Select your .csv file with the heading line removed <br/> 
-	  <input name="csv" type="file" id="csv" class="button secondary" /> <br />
-	  <input type="submit" class="button" name="Submit" value="Submit" /> 
+	  <p>Select your .csv file with the heading line removed </p> 
+	  <input name="csv" type="file" id="csv" class="button secondary" />
+	  <input type="submit" class="button" name="Submit" value="Add New CSV" /> 
 	</form> 
-    <form onsubmit="return changeVerification();" name="numVerifications" id="numVerifications">
-    <h5> Number of verifications before label completion: </h5>
-        <input type="text" id="count" name = "count" value='<?php echo get_verification_number($db); ?>'>
-        <input type="submit" class="button"/> 
-    </form>
-    
+</div>
+    <div class="row">
+        <h5>Update Verification Settings</h5>
+        <form onsubmit="return changeVerification();" name="numVerifications" id="numVerifications">
+        <div class="large-7 columns">
+            <label for="count" class="right">Number of verifications before label completion:</label>
+        </div>
+        <div class="large-2 columns"> 
+            <input type="text" id="count" name = "count" value='<?php echo get_verification_number($db); ?>'>
+        </div>
+        <br>
+        <div class="large-3 columns">
+        </div>
+            <input type="submit" class="button" value="Update number of Verifications"/> 
+        </form>
+    </div>
     <h5> Retrieve Completed Labels</h5>
+    <p> This downloads a CSV file to your computer </p>
     <form action="utils/getCompleteCSV.php">
         <input type="submit" class="button" name="Submit" value="Download Completed Labels" /> 
     </form>

@@ -11,8 +11,7 @@ position: relative;
 }
 
 header {
-	background-color: #2ba6cb;
-	padding: 22px 0;
+	/*background-color: #2ba6cb;*/
 	font-family: "OpenSans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 	color: #fff;
 }
@@ -33,14 +32,19 @@ footer {
 	clear: both;
 }
 footer p{
-	font-size: 20px;
-	line-height: 1.6em;
+	font-size: 12px;
+	margin-bottom: 0;
+	line-height: 1em;
 }
 
-.label{
+label{
 	width: 350px;
 	height: auto;
 	margin-top: 30px;
+	margin-top: 0.4em!important;
+	font-size: 1em !important;
+	line-height: 1em !important;
+
 }
 
 .hidden{

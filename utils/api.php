@@ -130,4 +130,13 @@ function get_current_user_details($db, $user_id){
 	$user = $result->fetch_assoc();
 	return $user['user_id'];	
 }
+
+function get_all_current_user_details($db, $user_id){
+	$user_query = "select * from user where username = '$user_id'";
+	$result = $db->query($user_query);
+	$user = $result->fetch_assoc();
+	return $user;	
+}
+
+
 ?>

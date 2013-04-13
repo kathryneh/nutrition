@@ -27,20 +27,26 @@
       <li class="divider"></li>
       <li><a href="#">Contact</a></li>
       <li class="divider"></li>
-      <li><a href="todo.php">Todo</a></li>
-      <li class="divider"></li>
+      <li style="display:none"><a href="todo.php">Todo</a></li>
+      <li style="display:none" class="divider"></li>
     </ul>
 
     <ul class="right">
       <li class="divider hide-for-small"></li>
-      <li><a href="settings.php">Settings</a></li>
-      <li class="divider"></li>
+      <?php 
+        session_start();
+        if(isset($_SESSION['user_id'])) {
+          echo '<li><a href="settings.php">Settings</a></li>';
+          echo '<li class="divider"></li>';
+        }
+        else{
+        }
+      ?>
       <li class="has-form">
         <form>
           <div class="row collapse">
               <a href="ajax/login.php" class="alert button">
                 <?php
-                  session_start();
                   if(isset($_SESSION['user_id'])) {
                       echo "Log Out";
                   }
@@ -71,9 +77,8 @@
   </div>
 	<div class="row">
 		<div class="twelve columns">
-			<h1>NuTRUtion Nation</h1>
-			<p class="subtitle">Helping understand America's dietary trends and the TRUE nutrition information about our food.</p>
-		</div>
+			<h2 class="subheader">NuTRUtion Nation<small class="subheader">&nbsp; &nbsp;In pursuit of understanding the TRUE nutrition information about our food.</small></h2>
+  </div>
 	</div>
 </header>
 <body>

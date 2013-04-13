@@ -1251,7 +1251,7 @@ label {
   font-weight: 500;
   margin-bottom: 0.1875em; }
   label.right {
-    float: none;
+    /*float: none;*/
     text-align: right; }
   label.inline {
     margin: 0 0 1em 0;

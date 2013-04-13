@@ -89,6 +89,7 @@ $(document).ready(function(){
 	}
 	var colName;
 	$(".hiddenRows").on('click', function(event){
+		console.log(event.target);
 		if($(event.target).hasClass("add")){
 			colName = event.target.getAttribute("column");
 			$("i[data='"+colName+"']").parent().parent().toggleClass("hidden");
@@ -97,7 +98,6 @@ $(document).ready(function(){
 		else if( $(event.target).hasClass("foundicon-plus")){
 			colName = event.target.parentNode.getAttribute("column");
 			$("i[data='"+colName+"']").parent().parent().toggleClass("hidden");
-			$("tr[data-column='"+colName+"']").toggleClass("hidden");
 			$('body').scroll($("tr[data-column="+colName+"]").offset().top);
 			$(event.target).parent().addClass("hidden");
 		}
