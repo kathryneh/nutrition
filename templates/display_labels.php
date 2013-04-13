@@ -2,12 +2,16 @@
 require_once("utils/dbconnect.php");
 require_once("utils/api.php");
 
+//This pulls the images from their storage location in Google Drive, 
+//and displays it to the user. 
 function display_img($upc){
-	echo "<img class='label' src='labels/$upc.jpg'></img>";
-
-	//for future figuring out stuff with the image hosting:
-	//https://developers.google.com/drive/about-sdk#search_for_files
+	echo "<img class='label' src='https://googledrive.com/host/0BwhhSadkOfI1Ql9lVzExQ3RTZDQ/$upc.jpg'></img>";
 }
+
+//This maps each database column to the correct human readable text output.
+//(arguably, this might be better to include in the database itself?)
+//
+//It then outputs the correct category of row for the user to see of the nutrition label
 function display_label($db, $upc, $userid){
 	$columnArray = array(
 	'upc' => 'UPC',
@@ -52,7 +56,9 @@ function display_label($db, $upc, $userid){
 	'otherinfo' => '<span class="secondary">Other Information</span>',
 	'extrainfo' => '<span class="secondary">Extra Information</span>'
 	);
-
+	
+	//pulls new and current labels for a given UPC 
+	//so that they can be compared.
 	$new = (get_new_label($db, $upc));
 	$current = (get_current_label($db, $upc));
 	$hiddenBoxes = "";
@@ -64,6 +70,9 @@ function display_label($db, $upc, $userid){
         	echo "<table class='data'>";
 			echo "<thead><tr><td style='min-width: 20em'>Value</td><td>Amount</td><td>Correct?</td><td>Remove?</td></tr></thead>";
         }
+        //if the current label HAS a value, we don't need
+        //the user to enter in data for this column.
+        //This, we give them a disabled input with a checkbox. 
         else if($current[$key] != NULL){ 
         	echo "<tr class='confirmed'><td>";
             echo $columnArray[$key];
@@ -71,6 +80,9 @@ function display_label($db, $upc, $userid){
         	echo "<td><input type='text' name='$key' value=$current[$key] disabled='true'></td>";
         	echo "<td><i class='foundicon-checkmark''></i></td><td><i class='foundicon-remove' data='$key'></i></td></tr>";
         }
+        //if the value is 0, we assume that this information isn't in the label
+        //and thus we hide this row but put it on the third column of +columns
+        //to add if necessary. 
         else if($value == '0'){//we're assuming it's not present in the label
         	$hiddenBox.= "<div class='button add' column='$key'><i class='foundicon-plus'></i>".strip_tags($columnArray[$key])."</div>";
         	echo "<tr class='hidden' data-column=$key><td>";
@@ -87,6 +99,7 @@ function display_label($db, $upc, $userid){
         	echo "<td><input type='text' name='$key' value='n/a'></td>";
         	echo "<td><input type='checkbox' name=$key></td><td><i class='foundicon-remove' data='$key'></i></td></tr>";
         }
+        //normal case. 
         else{ 
         	echo "<tr><td>";
             echo $columnArray[$key];

@@ -36,16 +36,18 @@ class authenticate {
 	public function createUser($username, $password, $email) {
 		$password_digest = $this->hashData($password);
 		$verification_code = $this->randomString();
-		$exists_query = "SELECT * FROM user WHERE username = $username";
+		$exists_query = "SELECT user_id FROM user WHERE username = '$username'";
 		$cursor = $this->_db->query($exists_query);
-		//if(mysqli_fetch_assoc($cursor)['username'] != NULL) {
-		//	return "Username already exists.";
-		//}
-		// check if username already exists
+		$row=mysqli_fetch_assoc($cursor);
+		if($row['user_id'] != NULL) {
+		  return false;
+		}
+
+		
 		$insert_query = "INSERT INTO user (username, email, password_digest, verification_code) values('$username', '$email', '$password_digest', '$verification_code')";
 		if($this->_db->query($insert_query)) {
 			if($this->sendVerificationEmail($email, $username, $verification_code)) {
-				return true;
+				return "error";
 			}
 			else {
 				$remove_query = "DELETE FROM user WHERE username = $username";
@@ -58,17 +60,37 @@ class authenticate {
 
 	public function sendVerificationEmail($email, $username, $verification_code) {
 		$subject = "NuTRUtion Account Verfication";
-		$message = "Hi $username,\n\n".
-		"Thank you for your desire to participate in NuTRUtion data verification! " .
-		"Please click the link below to verify your account. You will be redirected " .
-		"to the data verification page after authentication.\n\n" .
-		$verification_code . "\n\nThanks,\nThe NuTRUtion Team";
+		$message ='
+			<html>
+			<head>
+			</head>
+			<body> 
+			<p>
+				<?php echo "Thank you for your desire to participate in NuTRUtion data verification! " .
+				"Please click the link below to verify your account. You will be redirected " .
+				"to the data verification page after authentication.\n\n" .
+				$verification_code . "\n\nThanks,\nThe NuTRUtion Team"; ?>
+			</p>
+			<p><a id="<?php echo $verification_code; ?>" href="<?php $auth = new authenticate(); $auth->verify(?> this.id <?php ); ?>"></a></p>
+			</body>
+			</html>';
+
 		if(mail($email, $subject, $message)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+
+	public function verify($verification_code) {
+		$verification_query = "UPDATE user SET verified = 1 WHERE verification_code = '$verification_code'";
+		if($this->db->query($verification_query)===true) {
+			return true;
+		}
+		return false;
+	}
+
+
 
 	public function login($username, $password) {
 		session_start();

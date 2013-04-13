@@ -20,7 +20,7 @@
       <h1><a href="index.php">NuTRUtion</a></h1>
     </li>
 </ul>
-
+  
   <section class="top-bar-section">
     <ul class="left">
       <li><a href="#"><span>About</span></a></li>
@@ -45,29 +45,29 @@
       <li class="has-form">
         <form>
           <div class="row collapse">
-              <a href="ajax/login.php" class="alert button">
-                <?php
-                  if(isset($_SESSION['user_id'])) {
-                      echo "Log Out";
-                  }
-                  else {
-                      echo "Log In";
-                  }
-                ?></a>
+            <?php
+              if(isset($_SESSION['user_id'])) {
+                echo '<a class="alert button" href="ajax/logout.php">Log Out</a>';
+              }
+              else {
+                echo '<a class="alert button" href="login.php">Log In</a>';
+              }
+            ?>
           </div>
         </form>
       </li>
       <li class="divider show-for-small"></li>
       <li class="has-form">
-        <a class="button" href="signup.php">
-          <?php 
-            if(isset($_SESSION['user_id'])) {
-                echo $_SESSION['user_id'];
-            }
-            else echo "Sign Up";
-          ?>
-            </a>
+        <?php
+          if(!isset($_SESSION['user_id'])) {
+            echo '<a class="button" href="signup.php">Sign Up</a>';
+          }
+          else {
+            echo '<a href="#">Logged in as ' . $_SESSION['user_id'] . '</a>'; 
+          }
+        ?>
       </li>
+      <li><img style="margin-top:10px; clear:left;" src="images/cog.png"></img></li>
     </ul>
   </section>
 </nav>

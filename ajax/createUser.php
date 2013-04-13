@@ -55,12 +55,11 @@ if(empty($_POST['email'])) {
 // attempt to create new user 
 $error = $auth->createUser($username, $password, $email);
 if($error == true) {
-	$_SESSION['create_error'] = "New user created successfully. An email " .
-	"has been send to $email. Follow the email link to activate your account";
+	$_SESSION['create_success'] = "New user created successfully. An email " .
+	"has been sent to $email. Follow the email link to activate your account";
 	header('Location: ../signup.php');
 } else {
-	$_SESSION['create_error'] = $error;
-	//"Could not create new user. Username already in use";
+	$_SESSION['create_error'] = "Could not create new user. Username already in use";
 	header('Location: ../signup.php');
 }
 ?>

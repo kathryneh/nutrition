@@ -1,6 +1,8 @@
 <?php 
 
 require_once("dbconnect.php");
+//this retrieves all of the information from the complete_label and 
+//returns a CSV file that the user can then download and use however they like. 
 
 $db = getdb();
 $result = $db->query('SELECT * FROM complete_label');

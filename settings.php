@@ -17,7 +17,8 @@
     $handle = fopen($file,"r"); 
     $row = 1;
      
-    //loop through the csv file and insert into database 
+    //loop through the csv file and insert into database if the user has posted 
+    //this is only called if someone has uploaded a new CSV file.
     do { 
         if ($row == 1) {$row++; continue; }
         else{

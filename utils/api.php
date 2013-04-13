@@ -4,7 +4,7 @@
 //selects a random label from the database
 //where the user has not yet submitted a correction for the values
 //of this label. 
-function get_random_label($db, $userid){
+function get_random_label($db, $user_id){
 	$select_qry= "select upc from new_label where new_label.upc not in (select upc from complete_label) order by rand() limit 1";
 	$result = $db->query($select_qry);
 	$label = $result->fetch_assoc();
@@ -32,8 +32,8 @@ function add_to_current_label($db, $upc, $column_name, $column_value){
 //submit a value to the database given a column name and value and upc
 //aggregate this into one SQL statement? 
 //making a different submission insertion for each. 
-function submit_correction($db, $userid, $upc, $column_name, $column_value){
-	$insert_qry = "insert into submission (userid, upc, column_name, column_value) values($userid, '$upc', '$column_name', '$column_value')";
+function submit_correction($db, $user_id, $upc, $column_name, $column_value){
+	$insert_qry = "insert into submission (user_id, upc, column_name, column_value) values('$user_id', '$upc', '$column_name', '$column_value')";
 	$insert_id = $db->query($insert_qry);
 	$count = count_matching_submissions($db, $upc, $column_name, $column_value);
 	$complete = get_verification_number($db);
@@ -101,6 +101,9 @@ function get_new_label($db, $upc){
 	return $new_contents;
 }
 
+//copies values from the current_label table 
+//to the complete_label table when all of the current_label values
+//have been filled up and verified to match each other. 
 function copy_current_to_complete($db, $upc, $current_label){
 	$remove_qry = "delete from complete_label where upc = $upc";
 	$db->query($remove_qry);
@@ -114,16 +117,21 @@ function copy_current_to_complete($db, $upc, $current_label){
 	}
 }
 
+//makes a given user an admin in the table.
+//TODO this isn't currently wired up to anything...
 function make_admin($db, $user_id){
 	$admin_update = "update user set admin = 1 where user_id = $user_id";
 	$result = $db->query($admin_update);
 }
 
+//Updates the user's information in their profile page. 
 function update_user($db, $user_id, $first, $last, $email, $password, $confirm_password){
 	//TODO need to modify this to match what Tommy did in authenticate. 
 	$update_user = "update user set first = $first, last = $last, email = $email, password_digest = $password, verification_code = $confirm_password where user_id = $user_id";
 	$result = $db->query($update_user);
 }
+
+//retrieves the user id of the current user so that it can be ised in queries. 
 function get_current_user_details($db, $user_id){
 	$user_query = "select * from user where username = '$user_id'";
 	$result = $db->query($user_query);
@@ -131,12 +139,12 @@ function get_current_user_details($db, $user_id){
 	return $user['user_id'];	
 }
 
+//retrieves all of the current user details to be shown in the profile details
 function get_all_current_user_details($db, $user_id){
 	$user_query = "select * from user where username = '$user_id'";
 	$result = $db->query($user_query);
 	$user = $result->fetch_assoc();
 	return $user;	
 }
-
 
 ?>

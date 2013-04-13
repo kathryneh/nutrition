@@ -1,5 +1,6 @@
 <?php
 
+//connect to the database
 function getdb() {
 	$host="mydb";
 

@@ -1,5 +1,4 @@
-<?php
-require_once("/utils/dbconnect.php");
+/*require_once("/utils/dbconnect.php");
 
 class authenticate {
 	private $_db;
@@ -40,13 +39,12 @@ class authenticate {
 		$password = $salt . $password;
 		$password = $this->hashData($password);
 		$verification_code = $this->randomString();
+		// TO-DO: "password_digest" needs to be changed to "salt" in the user table. 
+
 		$insert_query = "INSERT INTO user (email, password, password_digest, verification_code) values($email, $password, $salt, $verification_code)";
 		$user_created = $db->query($insert_query);
 		if($user_created) {
 			if($this->sendVerificationEmail($email, $verification_code) == 1) {
-				<script type="text/javascript">
-				alert("An email has been sent to the address you provided. Click the link to verify your account.");
-				</script>
 				return true;
 			}
 		}
@@ -94,8 +92,8 @@ class authenticate {
 
 	public function checkSession() {
 		$user_id = $_SESSION['user_id'];
-		$token_query = "SELECT token FROM user WHERE user_id = $user_id";
-		$session_id_query = "SELECT session_id FROM user WHERE user_id = $user_id";
+		$token_query = "SELECT token FROM user WHERE username = $user_id";
+		$session_id_query = "SELECT session_id FROM user WHERE username = $user_id";
 		$token = $db->query($token_query);
 		$session_id = $db->query($session_id_query);
 		if($token == $_SESSION['token'] && $session_id == session_id()) {
@@ -123,7 +121,9 @@ class authenticate {
 		$db->query($delete_query);
 		session_unset();
 		session_destroy();
+		header('Location: index.php');
 	}
 }
 
 ?>
+*/

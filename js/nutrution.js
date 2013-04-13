@@ -1,3 +1,7 @@
+//This submits the nutrition label to submitNutritionLabel.php
+//It serializes all of the data in the large form on the nutrition label
+//and submits it to the database. 
+//It then returns true, triggering a page reload. 
 var submitNutritionLabel = function(){
 	$.ajax({
 		type:'POST',
@@ -10,6 +14,9 @@ var submitNutritionLabel = function(){
 	return true;
 };
 
+//This updates the number of verifications that must occur before
+//a label's information is copied from the submissions table
+//and considered to be correct. 
 var changeVerification = function(){
 	console.log($('#numVerifications').serialize());
 	$.ajax({
@@ -23,6 +30,8 @@ var changeVerification = function(){
 	return true;
 };
 
+//This function causes the nutrition label image to follow the user's scrolling so that 
+//it is easier for them to submit corrections. 
 var windowScroll = function(labelLocation){
 	$(window).scroll(function (event) {
 		var windowTop = $(this).scrollTop();
@@ -35,6 +44,7 @@ var windowScroll = function(labelLocation){
 	});
 };
 
+//This disables the checkbox when a user has entered a value
 var disableCheckbox = function(){
 	$('input').on('keypress', function(event){
 		var inputName = ($(event.target)[0].name);
@@ -42,6 +52,8 @@ var disableCheckbox = function(){
 	});
 };
 
+//This disables the input box if a user has set a checkbox
+//to be set to "correct"
 var disableInput = function(){
 	$('input[type=checkbox]').on('click', function(event){
 		var inputName = ($(event.target)[0].name);
@@ -52,6 +64,9 @@ var disableInput = function(){
 	});
 };
 
+//This hides the row of the nutrition label that a user
+//submits as being incorrect (and thus we consider this value to be zero)
+//and then adds the value of this row to be on the other column.
 var hideRow = function(event){
 	//event will be on the foundicon-remove - need to hide the row
 	$(event.target).closest("tr").toggleClass("hidden");
@@ -79,6 +94,9 @@ var hideRow = function(event){
 
 
 $(document).ready(function(){
+
+	//if the user isn't using Chrome, display a notification about
+	//less than optimal performance. 
 	if (!window.chrome){
 		$('#notChromeRow').show();
 	}
@@ -88,6 +106,9 @@ $(document).ready(function(){
 		windowScroll();
 	}
 	var colName;
+
+	//this adds event listeners to the + buttons on the right column
+	//and unhides rows from the database when appropriate. 
 	$(".hiddenRows").on('click', function(event){
 		console.log(event.target);
 		if($(event.target).hasClass("add")){
