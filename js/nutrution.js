@@ -10,6 +10,22 @@ var submitNutritionLabel = function(){
 	return true;
 };
 
+//This updates the number of verifications that must occur before
+//a label's information is copied from the submissions table
+//and considered to be correct. 
+var changeVerification = function(){
+       console.log($('#numVerifications').serialize());
+       $.ajax({
+               type:'POST',
+               url: 'utils/verification.php',
+               data: $('#numVerifications').serialize(),
+               success: function(response) {
+                       console.log(response);
+               }
+       });
+       return true;
+};
+
 var windowScroll = function(labelLocation){
 	$(window).scroll(function (event) {
 		var windowTop = $(this).scrollTop();
