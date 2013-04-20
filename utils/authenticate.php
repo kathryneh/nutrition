@@ -25,8 +25,9 @@ class authenticate {
 
 	public function isAdmin($username) {
 		$admin_query = "SELECT admin FROM user WHERE username = '$username'";
-		$admin = $db->query($admin_query);
-		if($admin == 1) {
+		$cursor = $this->_db->query($admin_query);
+		$row=mysqli_fetch_assoc($cursor);
+		if($row['admin'] == 1) {
 			return true;
 		} else {
 			return false;
@@ -43,19 +44,18 @@ class authenticate {
 		  return false;
 		}
 
-		
-		$insert_query = "INSERT INTO user (username, email, password_digest, verification_code) values('$username', '$email', '$password_digest', '$verification_code')";
+		$insert_query = "INSERT INTO user (username, email, password_digest, verification_code, date_created) values('$username', '$email', '$password_digest', '$verification_code', CURDATE())";
 		if($this->_db->query($insert_query)) {
 			if($this->sendVerificationEmail($email, $username, $verification_code)) {
-				return "error";
+				return true;
 			}
 			else {
 				$remove_query = "DELETE FROM user WHERE username = $username";
-				$db->query($remove_query);
-				return "Problem sending verification email. Please contact staff.";
+				$this->_db->query($remove_query);
+				return false;;
 			}
 		}
-		return "create error";
+		return false;
 	}
 
 	public function sendVerificationEmail($email, $username, $verification_code) {
@@ -63,34 +63,34 @@ class authenticate {
 		$message ='
 			<html>
 			<head>
+			<title>NuTRUtion Account Verification</title>
 			</head>
-			<body> 
-			<p>
-				<?php echo "Thank you for your desire to participate in NuTRUtion data verification! " .
-				"Please click the link below to verify your account. You will be redirected " .
-				"to the data verification page after authentication.\n\n" .
-				$verification_code . "\n\nThanks,\nThe NuTRUtion Team"; ?>
-			</p>
-			<p><a id="<?php echo $verification_code; ?>" href="<?php $auth = new authenticate(); $auth->verify(?> this.id <?php ); ?>"></a></p>
-			</body>
+			<body> ' . 
+			"Hi " . $username . ",<br>" .
+			"Thank you for your desire to participate in NuTRUtion " .
+			"data verification! Please navigate to the address below to " . 
+			"verify your account. You will be asked to login " .
+			"before you obtain access to the data verification page." . "<br><br>" .
+			"http://wwwx.cs.unc.edu/Courses/comp523-s13/nutrition/ajax/verify.php?code=" . $verification_code .
+			"<br><br>Thanks,<br>The NuTRUtion Team" . 
+			'</body>
 			</html>';
+		$headers = 'Content-type: text/html\n';
+		$headers .= 'From: NuTRUtion\n';
 
-		if(mail($email, $subject, $message)) {
+		if(mail($email, $subject, $message, $headers)) {
 			return true;
-		} else {
-			return false;
-		}
+		}			
+		    return false;
 	}
 
 	public function verify($verification_code) {
 		$verification_query = "UPDATE user SET verified = 1 WHERE verification_code = '$verification_code'";
-		if($this->db->query($verification_query)===true) {
+		if($this->_db->query($verification_query)===true) {
 			return true;
 		}
 		return false;
 	}
-
-
 
 	public function login($username, $password) {
 		session_start();

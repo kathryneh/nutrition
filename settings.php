@@ -7,6 +7,13 @@
   require_once("utils/verification.php");
   $db=getdb();
   $auth = new authenticate();
+  session_start();
+
+  // must be logged in to see this page
+  if(!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+  }
 
   $user = get_all_current_user_details($db, $_SESSION['user_id']);
 
@@ -152,18 +159,18 @@
         <br>
         <input type="submit" id="login" value="Save Profile Changes" class="button large-offset-2">
       </form>
-      <div class="row">
-    <h3> Admin Settings </h3>
-    <h5> Add a new CSV file of nutrition label information </h5>
-      <?php if (!empty($_GET[success])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?> 
+      <div class="row admin-only">
+        <h3> Admin Settings </h3>
+        <h5> Add a new CSV file of nutrition label information </h5>
+        <?php if (!empty($_GET[success])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?> 
     
-	<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1"> 
-	  <p>Select your .csv file with the heading line removed </p> 
-	  <input name="csv" type="file" id="csv" class="button secondary" />
-	  <input type="submit" class="button" name="Submit" value="Add New CSV" /> 
-	</form> 
-</div>
-    <div class="row">
+	    <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1"> 
+	      <p>Select your .csv file with the heading line removed </p> 
+	      <input name="csv" type="file" id="csv" class="button secondary" />
+	      <input type="submit" class="button" name="Submit" value="Add New CSV" /> 
+	    </form> 
+      </div>
+      <div class="row admin-only">
         <h5>Update Verification Settings</h5>
         <form onsubmit="return changeVerification();" name="numVerifications" id="numVerifications">
         <div class="large-7 columns">
@@ -178,17 +185,88 @@
             <input type="submit" class="button" value="Update number of Verifications"/> 
         </form>
     </div>
-    <h5> Retrieve Completed Labels</h5>
-    <p> This downloads a CSV file to your computer </p>
-    <form action="utils/getCompleteCSV.php">
-        <input type="submit" class="button" name="Submit" value="Download Completed Labels" /> 
-    </form>
+    <div class="row admin-only">
+      <h5> Retrieve Completed Labels</h5>
+      <p> This downloads a CSV file to your computer </p>
+        <form action="utils/getCompleteCSV.php">
+          <input type="submit" class="button" name="Submit" value="Download Completed Labels" /> 
+        </form>
     </div>
+    <div class="row admin-only">
+        <h5>Manage Users</h5>
+        <?php 
+            $numSub = 0;
+            function generateSelect($name = '', $options = array()) 
+            {
+                $html = '<select name="'.$name.'">';
+                foreach ($options as $option => $value) {
+                    $html .= '<option value='.$value.'>'.$value.'</option>';
+                }
+                $html .= '</select>';
+                return $html;
+            }
+            function buildArray($selected = '')
+            {
+                $users = mysqli_query($db, "SELECT * FROM user");
+                while ($userInfo = mysqli_fetch_array($users))
+                {
+                    if($userInfo['username'] == $selected)
+                    {
+                        $id = $userInfo['user_id'];
+                        $admin = $userInfo['admin'];
+                    }
+                }
+                $submitted = mysqli_query($db, "SELECT * FROM submissions");
+                while ($subInfo = mysqli_fetch_array($submitted))
+                {
+                    if($submitted['id'] == $id)
+                    {
+                        $numSub++;
+                    }
+                }
+                //$numSub = $numSub/18;
+                $finalarray = array($submitted, $id, $numSub, $admin);
+            }
+            $users = mysqli_query($db, "SELECT * FROM user");
+            while ($userInfo = mysqli_fetch_array($users))
+            {
+                $userstable[] = $userInfo['username'];
+            }
+            $html = generateSelect('usernames', $userstable);
+            echo $html;
+            echo "<table border='1'>
+                    <tr>
+                    <th>Username</th>
+                    <th>User ID</th>
+                    <th>Number of Submissions</th>
+                    <th>Date Joined</th>
+                    <th>Admin</th>
+                    </tr>";
+            while(empty($_POST['usernames']) == false)
+            { 
+            buildArray($_POST['usernames']);
+            echo "<tr>";
+            echo "<td>" . $finalarray[0] . "</td>";
+            echo "<td>" . $finalarray[1] . "</td>";
+            echo "<td>" . $finalarray[2] . "</td>";
+            echo "<td>" . $finalarray[3] . "</td>";
+            echo "</tr>";}
+            echo "</table>";
+            ?>
+          </div>
     <div class="large-3 columns"></div>
   </div>
+</div>
 
-  <?php 
-  
+<?php 
+  if($auth->isAdmin($_SESSION['user_id'])===false) {
+    echo 
+        '<script type="text/javascript">
+            $(".admin-only").hide();
+        </script>';
+  }
 
-  include("templates/footer.php");  
+    include("templates/footer.php");  
 ?>
+
+

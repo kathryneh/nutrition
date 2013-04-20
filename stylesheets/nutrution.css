@@ -11,7 +11,8 @@ position: relative;
 }
 
 header {
-	/*background-color: #2ba6cb;*/
+	background-color: #2ba6cb;
+	padding: 22px 0;
 	font-family: "OpenSans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 	color: #fff;
 }
@@ -32,19 +33,14 @@ footer {
 	clear: both;
 }
 footer p{
-	font-size: 12px;
-	margin-bottom: 0;
-	line-height: 1em;
+	font-size: 20px;
+	line-height: 1.6em;
 }
 
-label{
+.label{
 	width: 350px;
 	height: auto;
 	margin-top: 30px;
-	margin-top: 0.4em!important;
-	font-size: 1em !important;
-	line-height: 1em !important;
-
 }
 
 .hidden{
@@ -129,3 +125,18 @@ html[xmlns] .clearfix {
 	background-color: yellow;
 	color: black;
 }
+
+.click-nav {margin:100px auto;width:200px;}
+.click-nav ul {position:relative;font-weight:900;}
+.click-nav ul li {position:relative;list-style:none;cursor:pointer;}
+.click-nav ul li ul {position:absolute;left:0;right:0;}
+.click-nav ul .clicker {position:relative;background:#2284B5;color:#FFF;}
+.click-nav ul .clicker:hover,.click-nav ul .active {background:#196F9A;}
+.click-nav img {position:absolute;top:9px;left:12px;}
+.click-nav ul li a {transition:background-color 0.2s ease-in-out;-webkit-transition:background-color 0.2s ease-in-out;
+-moz-transition:background-color 0.2s ease-in-out;display:block;padding:8px 10px 8px 40px;background:#FFF;color:#333;text-decoration:none;}
+.click-nav ul li a:hover {background:#F2F2F2;}
+
+/* Fallbacks */
+.click-nav .no-js ul {display:none;}
+.click-nav .no-js:hover ul {display:block;}

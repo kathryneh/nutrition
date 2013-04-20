@@ -69,10 +69,27 @@
           }
         ?>
       </li>
-      <li><img style="margin-top:10px; clear:left;" src="images/cog.png"></img></li>
+      <li class="divider"></li>
+      <li class="has-form">
+        <div class="click-nav">
+          <ul class="no-js">
+            <li>
+              <a href="#" class="clicker"><img src="images/i_DownArrow.png"></a>
+              <ul>
+                <li><a href='#'>Logout</a></li>
+                <li><a href='#'>Settings</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </section>
 </nav>
+
+
+
+
 <header>
   <div class="row" id="notChromeRow">
     <div class="notChrome large-6 large-offset-3 columns panel" style="display:none;">This site is optimized for Google Chrome and may act unexpectedly in other browsers</div>
