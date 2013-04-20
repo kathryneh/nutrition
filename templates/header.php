@@ -27,6 +27,8 @@
       <li class="divider"></li>
       <li><a href="#">Contact</a></li>
       <li class="divider"></li>
+      <li><a href="help.php">Help</a></li>
+      <li class="divider"></li>
       <li style="display:none"><a href="todo.php">Todo</a></li>
       <li style="display:none" class="divider"></li>
     </ul>

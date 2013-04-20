@@ -1,0 +1,61 @@
+The administrator manual is intended for the person setting up the system. This needs to include all software and hardware dependencies, download instructions, and any hardware set-up instructions. This is the place to document what systems have been tested, what the expected compatabilities are and any known incompatabilities. If the administrator needs to set up ids and passwords before the system is fully deployed, this needs to be covered in this manual. The administrator manual should include a complete set of easy-to-follow instructions of how to deploy the system in a new environment or how to redeploy the system if it needs to be restarted or refreshed. You again need to be cognizant of the skill level of the administrator. You can assume that it is an adult, but given the intended audience, you must determine the appropriate level of skills that you can assume. This again should be defined in your user descriptions.
+
+Greetings! Thank you for using NutruitionDB, a creation of the COMP 523: Software Engineering course. Authors: Katie Hawthorne (kathryne), Tommy Ferguson (atfergus), Gautam Sanka (gausanka). 
+
+In this document, we will walk you through the process of setting up NutrutionDB on your own server. 
+
+System Requirements:
+--PHP
+--MySQL
+--Public Server Space
+--Google Drive  
+
+Dependencies:
+
+1. Make sure that you have PHP installed on your server. This system has been tested and is known to be compatible with PHP version 5.3.15. The installation of PHP is outside the scope of this administrator manual - please check with your server admin to go through this process. 
+
+2. Ensure that you have access to a server running MySQL. Please check with your server administrator to set up a database and provide access to this. 
+
+4. You will need a Google Drive account to store photos. 
+
+3. As NuTRUtion is a web-based application, you will need a server that is publicly accessible. You may need to work with your server admin to ensure that the file space has the correct file permissions and access rights. 
+
+Setting Up NuTRUtion: 
+1. Setting up the database
+To set up the NuTRUtion database, run the nutritiondb.sql script when logged into a machine running MySQL. This should be performed after creating your database and logging into the database. See your server admin if you need information about login and access information for your database. This script will create all of the tables used in the NuTRUtion web application. 
+
+2. Setting up the website
+To set up the website, copy the entire nutrition folder into a publicly-readable folder on your server running PHP. This may be nested however is desirable for your URL structure. You will also need to modify the file dbconnect.php (in the utils folder) to reflect the correct login and credentials for your MySQL server. In this file, modify the lines that define the $host, $username, $password, and $database. You may need to ask your server admin for this information. Replace the values in strings with the correct values that represent your setup. 
+
+3. Setting up Google Drive
+//TODO - Gautam?
+
+Editing NuTRUtion System Settings:
+1. Changing verification
+After your server is up and running, navigate to the Settings page and scroll down to the Admin Settings section. There is an input box that allows you to enter a numerical value. This value represents the number of agreeing submissions that must be captured before a value is considered to be correct from user input data. 
+
+Using NuTRUtion
+1. Adding data
+After your server is up and running, navigate to the Settings page and scroll down to the Admin Settings section. To add data to the NuTRUtion database, you should have a .csv (comma separated value) file that contains data collected from nutrition labels that have been OCRed. Remove the first line of column headings if present, and then upload the file. You should see a success statement after the page reloads indicating that the file has been successfully imported to the database. 
+
+2. Adding photos
+//TODO - Gautam?
+
+3. Retrieving data
+After your server is up and running, navigate to the Settings page and scroll down to the Admin Settings section. Click on the button that indicates that you can download completed nutrition label information, and you will receive a .csv file of all labels that have been successfully corrected. This file can then be imported into Excel or your favorite analysis tool. 
+
+4. Viewing user activity 
+//TODO - Gautam?
+
+Correcting Nutrition Data:
+A more detailed, with pictures, guide to correcting nutrition data can be found at help.php when navigated to from your web browser running a successfully deployed version of NuTRUtion. 
+
+    Sign up for an account.
+    Log in or use the site as a guest.
+    Compare user values in the table to the images of a nutrition label.
+        If the value is correct and matches the image of a nutrition label, click the "correct" checkbox.
+        If the value is not correct, edit the value in the input box.
+        If a value is zero, by default it isn't added to the nutrition label table. 
+        If a value is missing from the nutrition label input data, but is present in the image, click to add it.
+    Continue down the nutrition label, and submit it at the end.
+    Repeat! Thank you for participating in NuTRUtion!

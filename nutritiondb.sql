@@ -1,5 +1,5 @@
-#CREATE TABLE SYNTAX FOR NUTRITIONDB
-#passed off as a deliverable for COMP 523 Software Engineering
+-- #CREATE TABLE SYNTAX FOR NUTRITIONDB
+-- #passed off as a deliverable for COMP 523 Software Engineering
 
 -- +-----------------------+
 -- | Tables_in_nutritiondb |
