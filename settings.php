@@ -22,69 +22,68 @@
     //get the csv file 
     $file = $_FILES[csv][tmp_name]; 
     $handle = fopen($file,"r"); 
-    $row = 1;
      
     //loop through the csv file and insert into database if the user has posted 
     //this is only called if someone has uploaded a new CSV file.
-    do { 
-        if ($row == 1) {$row++; continue; }
-        else{
-            if ($data[0]) { 
-                $db->query("INSERT INTO new_label (upc, servsize ,servunit ,volquantity, 
-                								volunit, servcontainer, calories, caloriesfat, 
-                								totalfatg, totalfatdv, saturatedfatg, saturatedfatdv, 
-                								transfatg, polyunsatfat, monounsatfat, cholesterolmg, 
-                								cholesteroldv, sodiummg, sodiumdv, potassiummg, 
-                								potassiumdv, totalcarbg, totalcarbdv, dietaryfiberg, 
-                								dietaryfiberdv, sugarsg, sugarsalcoholg, othercarbg, 
-                								proteing, calciumdv, irondv, vitaminadv, vitamincdv, 
-                								vitaminddv, vitaminedv, vitaminb6dv, vitaminb12dv, 
-                								thiamindv, riboflavindv, otherinfo, extrainfo) VALUES 
-                    ( 
-                        '".addslashes($data[0])."',  
-                        '".addslashes($data[1])."',
-                        '".addslashes($data[2])."',  
-                        '".addslashes($data[3])."',
-                        '".addslashes($data[4])."',  
-                        '".addslashes($data[5])."',
-                        '".addslashes($data[6])."',
-                        '".addslashes($data[7])."',  
-                        '".addslashes($data[8])."',
-                        '".addslashes($data[9])."',
-                        '".addslashes($data[10])."',  
-                        '".addslashes($data[11])."',
-                        '".addslashes($data[12])."',  
-                        '".addslashes($data[13])."',
-                        '".addslashes($data[14])."',  
-                        '".addslashes($data[15])."',
-                        '".addslashes($data[16])."',
-                        '".addslashes($data[17])."',  
-                        '".addslashes($data[18])."',
-                        '".addslashes($data[19])."',
-                        '".addslashes($data[20])."',  
-                        '".addslashes($data[21])."',
-                        '".addslashes($data[22])."',  
-                        '".addslashes($data[23])."',
-                        '".addslashes($data[24])."',  
-                        '".addslashes($data[25])."',
-                        '".addslashes($data[26])."',
-                        '".addslashes($data[27])."',  
-                        '".addslashes($data[28])."',
-                        '".addslashes($data[29])."',
-                        '".addslashes($data[30])."',  
-                        '".addslashes($data[31])."',
-                        '".addslashes($data[32])."',  
-                        '".addslashes($data[33])."',
-                        '".addslashes($data[34])."',  
-                        '".addslashes($data[35])."',
-                        '".addslashes($data[36])."',
-                        '".addslashes($data[37])."',  
-                        '".addslashes($data[38])."',
-                        '".addslashes($data[39])."',      
-                        '".addslashes($data[40])."' 
-                    ) 
-                "); 
-            } 
+    do {
+        if (is_numeric($data[0])) { 
+            echo $data[0];
+            echo $data[1];
+            echo $data[2];
+            $db->query("INSERT INTO new_label (upc, servsize ,servunit ,volquantity, 
+            								volunit, servcontainer, calories, caloriesfat, 
+            								totalfatg, totalfatdv, saturatedfatg, saturatedfatdv, 
+            								transfatg, polyunsatfat, monounsatfat, cholesterolmg, 
+            								cholesteroldv, sodiummg, sodiumdv, potassiummg, 
+            								potassiumdv, totalcarbg, totalcarbdv, dietaryfiberg, 
+            								dietaryfiberdv, sugarsg, sugarsalcoholg, othercarbg, 
+            								proteing, calciumdv, irondv, vitaminadv, vitamincdv, 
+            								vitaminddv, vitaminedv, vitaminb6dv, vitaminb12dv, 
+            								thiamindv, riboflavindv, otherinfo, extrainfo) VALUES 
+                ( 
+                    '".addslashes($data[0])."',  
+                    '".addslashes($data[1])."',
+                    '".addslashes($data[2])."',  
+                    '".addslashes($data[3])."',
+                    '".addslashes($data[4])."',  
+                    '".addslashes($data[5])."',
+                    '".addslashes($data[6])."',
+                    '".addslashes($data[7])."',  
+                    '".addslashes($data[8])."',
+                    '".addslashes($data[9])."',
+                    '".addslashes($data[10])."',  
+                    '".addslashes($data[11])."',
+                    '".addslashes($data[12])."',  
+                    '".addslashes($data[13])."',
+                    '".addslashes($data[14])."',  
+                    '".addslashes($data[15])."',
+                    '".addslashes($data[16])."',
+                    '".addslashes($data[17])."',  
+                    '".addslashes($data[18])."',
+                    '".addslashes($data[19])."',
+                    '".addslashes($data[20])."',  
+                    '".addslashes($data[21])."',
+                    '".addslashes($data[22])."',  
+                    '".addslashes($data[23])."',
+                    '".addslashes($data[24])."',  
+                    '".addslashes($data[25])."',
+                    '".addslashes($data[26])."',
+                    '".addslashes($data[27])."',  
+                    '".addslashes($data[28])."',
+                    '".addslashes($data[29])."',
+                    '".addslashes($data[30])."',  
+                    '".addslashes($data[31])."',
+                    '".addslashes($data[32])."',  
+                    '".addslashes($data[33])."',
+                    '".addslashes($data[34])."',  
+                    '".addslashes($data[35])."',
+                    '".addslashes($data[36])."',
+                    '".addslashes($data[37])."',  
+                    '".addslashes($data[38])."',
+                    '".addslashes($data[39])."',      
+                    '".addslashes($data[40])."' 
+                ) 
+            "); 
         }
     } while ($data = fgetcsv($handle,1000,",","'")); 
     // 
