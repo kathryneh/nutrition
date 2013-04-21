@@ -194,38 +194,45 @@
     </div>
     <div class="row admin-only">
         <h5>Manage Users</h5>
+        <script>
+        function showUser(str)
+        {
+        if (str=="")
+          {
+          document.getElementById("txtHint").innerHTML="";
+          return;
+          } 
+        if (window.XMLHttpRequest)
+          {// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+          }
+        else
+          {// code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+        xmlhttp.onreadystatechange=function()
+          {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+            document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+            }
+          }
+        xmlhttp.open("GET","getuser.php?q="+str,true);
+        xmlhttp.send();
+        }
+        </script>
         <?php 
             $numSub = 0;
             function generateSelect($name = '', $options = array()) 
             {
-                $html = '<select name="'.$name.'">';
+                $html = '<form> <select name="'.$name.'" onchange="showUser(this.value)">';
                 foreach ($options as $option => $value) {
                     $html .= '<option value='.$value.'>'.$value.'</option>';
                 }
-                $html .= '</select>';
+                $html .= '</select></form>
+                <br>
+                <div id="txtHint"><b>Person info will be listed here.</b></div>';
                 return $html;
-            }
-            function buildArray($selected = '')
-            {
-                $users = mysqli_query($db, "SELECT * FROM user");
-                while ($userInfo = mysqli_fetch_array($users))
-                {
-                    if($userInfo['username'] == $selected)
-                    {
-                        $id = $userInfo['user_id'];
-                        $admin = $userInfo['admin'];
-                    }
-                }
-                $submitted = mysqli_query($db, "SELECT * FROM submissions");
-                while ($subInfo = mysqli_fetch_array($submitted))
-                {
-                    if($submitted['id'] == $id)
-                    {
-                        $numSub++;
-                    }
-                }
-                //$numSub = $numSub/18;
-                $finalarray = array($submitted, $id, $numSub, $admin);
             }
             $users = mysqli_query($db, "SELECT * FROM user");
             while ($userInfo = mysqli_fetch_array($users))
@@ -234,26 +241,8 @@
             }
             $html = generateSelect('usernames', $userstable);
             echo $html;
-            echo "<table border='1'>
-                    <tr>
-                    <th>Username</th>
-                    <th>User ID</th>
-                    <th>Number of Submissions</th>
-                    <th>Date Joined</th>
-                    <th>Admin</th>
-                    </tr>";
-            while(empty($_POST['usernames']) == false)
-            { 
-            buildArray($_POST['usernames']);
-            echo "<tr>";
-            echo "<td>" . $finalarray[0] . "</td>";
-            echo "<td>" . $finalarray[1] . "</td>";
-            echo "<td>" . $finalarray[2] . "</td>";
-            echo "<td>" . $finalarray[3] . "</td>";
-            echo "</tr>";}
-            echo "</table>";
-            ?>
-          </div>
+        ?>
+    </div>
     <div class="large-3 columns"></div>
   </div>
 </div>

@@ -28,7 +28,7 @@ To set up the NuTRUtion database, run the nutritiondb.sql script when logged int
 To set up the website, copy the entire nutrition folder into a publicly-readable folder on your server running PHP. This may be nested however is desirable for your URL structure. You will also need to modify the file dbconnect.php (in the utils folder) to reflect the correct login and credentials for your MySQL server. In this file, modify the lines that define the $host, $username, $password, and $database. You may need to ask your server admin for this information. Replace the values in strings with the correct values that represent your setup. 
 
 3. Setting up Google Drive
-//TODO - Gautam?
+To set up the Google Drive Account, create a Google Account. The current system is using the nutrutionation Google account. Go to http://drive.google.com and create a new folder. The new folder is to be created with the setting that it is publicly accessible on the internet. This setting will then extend to any images that are then subsequently added to the folder. The folder will now have a identifier that can be used to find the image files on the web.
 
 Editing NuTRUtion System Settings:
 1. Changing verification
@@ -39,13 +39,13 @@ Using NuTRUtion
 After your server is up and running, navigate to the Settings page and scroll down to the Admin Settings section. To add data to the NuTRUtion database, you should have a .csv (comma separated value) file that contains data collected from nutrition labels that have been OCRed. Remove the first line of column headings if present, and then upload the file. You should see a success statement after the page reloads indicating that the file has been successfully imported to the database. 
 
 2. Adding photos
-//TODO - Gautam?
+The photos should be added to the Google Drive Account at http://www.drive.google.com with the username of nutrutionnation. The folder NNImages contains the existing images and the new images need to be added to this folder. To upload, press on the red upload button on the top left and select the images files to be uploaded. 
 
 3. Retrieving data
 After your server is up and running, navigate to the Settings page and scroll down to the Admin Settings section. Click on the button that indicates that you can download completed nutrition label information, and you will receive a .csv file of all labels that have been successfully corrected. This file can then be imported into Excel or your favorite analysis tool. 
 
 4. Viewing user activity 
-//TODO - Gautam?
+Navigating to the Settings page, scroll down and you will find a drop-down list of all the users in the database. Selecting a user will provide their details: id, username, number of submissions and their admin status. 
 
 Correcting Nutrition Data:
 A more detailed, with pictures, guide to correcting nutrition data can be found at help.php when navigated to from your web browser running a successfully deployed version of NuTRUtion. 

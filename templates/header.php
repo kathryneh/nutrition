@@ -65,23 +65,9 @@
             echo '<a class="button" href="signup.php">Sign Up</a>';
           }
           else {
-            echo '<a href="#">Logged in as ' . $_SESSION['user_id'] . '</a>'; 
+            echo '<a href="#">Logged in as '  . $_SESSION['user_id'] . '</a>'; 
           }
         ?>
-      </li>
-      <li class="divider"></li>
-      <li class="has-form">
-        <div class="click-nav">
-          <ul class="no-js">
-            <li>
-              <a href="#" class="clicker"><img src="images/i_DownArrow.png"></a>
-              <ul>
-                <li><a href='#'>Logout</a></li>
-                <li><a href='#'>Settings</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
       </li>
     </ul>
   </section>
