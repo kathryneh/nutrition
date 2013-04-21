@@ -125,9 +125,9 @@ function make_admin($db, $user_id){
 }
 
 //Updates the user's information in their profile page. 
-function update_user($db, $user_id, $first, $last, $email, $password, $confirm_password){
+function update_user($db, $user_id, $username, $first, $last, $email){
 	//TODO need to modify this to match what Tommy did in authenticate. 
-	$update_user = "update user set first = $first, last = $last, email = $email, password_digest = $password, verification_code = $confirm_password where user_id = $user_id";
+	$update_user = "update user set first = '$first', last = '$last', email = '$email' where user_id = $user_id";
 	$result = $db->query($update_user);
 }
 

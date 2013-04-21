@@ -26,6 +26,21 @@ var changeVerification = function(){
        return true;
 };
 
+//This updates the user data in the users table. 
+var updateUserInfo = function(){
+       console.log($('#updateUser').serialize());
+       $.ajax({
+               type:'POST',
+               url: 'ajax/updateUser.php',
+               data: $('#updateUser').serialize(),
+               success: function(response) {
+                       console.log(response);
+                       $('#userProfileUpdated').css("visibility", "visible");
+               }
+       });
+       return false;
+};
+
 var windowScroll = function(labelLocation){
 	$(window).scroll(function (event) {
 		var windowTop = $(this).scrollTop();

@@ -96,17 +96,19 @@
   <div class="row">
     <div class="large-6 large-offset-1" style="min-height: 700px">
       <h3> User Settings </h3>
-      <form method="POST" id = "userSignup">
+        <form onsubmit="return updateUserInfo();" name="updateUser" id="updateUser">
         <div class="row">
             <div class="large-2 columns">
                 <label for="username" class="right">Username</label>
             </div>
             <div class="large-5 columns">
-            <input type="text" id="username" name = "username" value=<?php echo $user['username']; ?> disabled=true>
+            <input type="text" id="user_name" name = "user_name" value=<?php echo $user['username']; ?> disabled=true>
             </div>
             <div class="large-5 columns">
             </div>
         </div>
+        <input type="hidden" id="username" name = "username" value=<?php echo $user['username']; ?>>
+        <input type="hidden" id="userid" name = "userid" value=<?php echo $user['user_id']; ?>>
         <br>
         <div class="row">
             <div class="large-2 columns">
@@ -157,14 +159,16 @@
         </div>
         <br>
         <input type="submit" id="login" value="Save Profile Changes" class="button large-offset-2">
+        <p id="userProfileUpdated" style="visibility:hidden" class="large-offset-1 columns"> User Profile successfully updated! </p>
+     
       </form>
+
       <div class="row admin-only">
         <h3> Admin Settings </h3>
         <h5> Add a new CSV file of nutrition label information </h5>
         <?php if (!empty($_GET[success])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?> 
     
 	    <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1"> 
-	      <p>Select your .csv file with the heading line removed </p> 
 	      <input name="csv" type="file" id="csv" class="button secondary" />
 	      <input type="submit" class="button" name="Submit" value="Add New CSV" /> 
 	    </form> 
