@@ -41,6 +41,21 @@ var updateUserInfo = function(){
        return false;
 };
 
+var updateAdminInfo = function(){
+       console.log($('#updateAdmin').serialize());
+       $.ajax({
+               type:'POST',
+               url: 'ajax/updateAdmin.php',
+               data: $('#updateAdmin').serialize(),
+               success: function(response) {
+                       console.log(response);
+                       //$('#userProfileUpdated').css("visibility", "visible");
+               }
+       });
+       return false;
+};
+
+
 var windowScroll = function(labelLocation){
 	$(window).scroll(function (event) {
 		var windowTop = $(this).scrollTop();

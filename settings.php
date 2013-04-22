@@ -130,7 +130,7 @@
                 <label for="email" class="right">Email Address</label>
             </div>
             <div class="large-5 columns"> 
-                <input type="text" id="email" name = "email" value=<?php echo $user['username']; ?>>   
+                <input type="text" id="email" name = "email" value=<?php echo $user['email']; ?>>   
             </div>
             <div class="large-5 columns">
             </div>

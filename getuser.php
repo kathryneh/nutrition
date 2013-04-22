@@ -46,9 +46,10 @@
 	  if ($usersInfo['admin'] == 0)
 	  {
 	  	echo "<td>No</td>";
-	  	/*echo '<td><form onsubmit="return make_admin($db, ' . $usersInfo['user_id'] . ');" name="makeAdmin" id="numAdmins">
+	  	echo '<td><form onsubmit="return updateAdminInfo();" name="updateAdmin" id="updateAdmin">
+	  		  <input type = "text" id="userid" name = "userid" value = "'. $usersInfo['user_id'].'" style="visibility:hidden">
 	  		  <input type="submit" class="button" value="Make Admin"/> 
-              </form></td>';*/
+              </form></td>';
 	  }
 	  else
 	  {

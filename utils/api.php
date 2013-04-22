@@ -119,8 +119,10 @@ function copy_current_to_complete($db, $upc, $current_label){
 
 //makes a given user an admin in the table.
 //TODO this isn't currently wired up to anything...
-function make_admin($db, $user_id){
-	$admin_update = "update user set admin = 1 where user_id = $user_id";
+function update_admin($db, $user_id, $admin){
+	echo $admin;
+	echo $user_id;
+	$admin_update = "update user set admin = '$admin' where user_id = $user_id";
 	$result = $db->query($admin_update);
 }
 

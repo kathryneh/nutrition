@@ -191,6 +191,20 @@ CREATE TABLE `user` (
   `verification_code` varchar(50) NOT NULL,
   `username` varchar(15) NOT NULL,
   `verified` int(1) DEFAULT NULL,
+  `date_created` varchar(10) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
+);
+
+INSERT into user VALUES(
+  0, 
+  'admin', 
+  'admin', 
+  'admin', 
+  '5d438cfe951ea88e079c2d11165e7bd9305401dc7013bbcb101087e7e441d17877239a64ce293e41a4a466b9fea4083603b6384b878bdb44fe3e8bdf9e745d2e',
+  '1',
+  'hpvsnk1828fqzis5gn90gr550o7wjwrhuwkar6i5isjferb',
+  'admin',
+  '1', 
+  '2013-04-18'
 );
